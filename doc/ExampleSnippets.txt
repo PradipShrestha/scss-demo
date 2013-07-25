@@ -3,58 +3,169 @@
  */
 
 =====================================================
-** CHAPTER 4: SASS 
+** 4: SASS 
 =====================================================
 
-Chapter 4: Variables
+//Import all the common ...
+@import "compass/reset";
+@import "zen";              // Add the Zen Grids responsive layout mixins.
+
+
+Variables: Site color palette //add to _base.scss
 ---------------
-$myColor1: navy;                            // named color value
-$myColor2: #000080;                         // hex color value
-$myStringVar: " with an appended string";   // string variable 
-$myFontSize: 18px;                          // numeric value
+
+$mHeaderColor:#2D2D2D;                         // hex color value
+$padding: 15px 15px 15px 15px;           	  // multi-value variable
+$basefont:12px;
+$hlfont:16px;
+$StringVar:This is a test string;        
+$fontcolor:#fff; 						 	
+$hgroup-color:#ACE2FF; 						 
+$font-family:Gill, Helvetica, sans-serif ;
+$mccolor:#F9FAF5;
+$sccolor:#FFFFFF;
+$fccolor:#F9FAF5;
+$hrcolor:1px solid #ccc;
 $thinBorder: 1px solid $myColor1;           // multi-value variable
-$paddingVar: 15px 15px 15px 15px;           // multi-value variable
 
-h1, h2 {
-    color: $myColor1;
+
+// Zen Girld vars 
+$zen-column-count: 16;    // Set the total number of columns in the grid.
+$zen-gutter-width: 10px;
+$zen-grid-color: #ffdede !default;
+
+
+
+//Add to screen.scss
+
+body{
+	font-family:$font-family;
+	font-weight:normal;
 }
 
-#mypara {
-    font-size: $myFontSize;
-    border: $thinBorder;
-    padding: $paddingVar;
-}
-
-#mypara:after {
-    content: $myStringVar;
+.para:after {
+    content: $StringVar;
 }
 
 
-Chapter 4: Nested Styles
+header {
+	background:$mHeaderColor;
+	padding:$padding;
+	color:$fontcolor;
+	min-height:300px;
+	font-weight:bold;
+	padding-top:80px;
+}
+
+4: Nested Styles
 ---------------
-body {
-    font-family: Helvetica, Arial, sans-serif;
-    
-    p {
-        font-family:Times;
-    }
-    p#mypara {
-        font-family: "Courier New";
-    }
+
+header{
+	hgroup{
+		h1{
+			font-size:12px;
+			display:none;	
+		
+		}
+		h2{
+			font-size:64px;	
+			text-align:center;
+		}
+		
+		h3{
+			 font-size: 29px;
+			 font-weight: normal;
+			 margin-right: 202px;
+			 text-align: right;
+			 margin-top: 15px;
+		}
+	}
+
 }
 
-#mypara {
-    color: #404040;
-    border: 1px solid #404040;
-    padding: 10px;
-    
-    &:hover {
-        color: red;
-    }
+
+section{
+
+}
+
+nav{
+display:none;
+}
+
+section#main-content,
+	section#sub-content{
+		padding:$padding;
+			hgroup{
+			
+				h1{
+					 font-size: 29px;
+					 font-weight:bold;
+				}
+			
+			}
+
 }
 
 
-Chapter 4: SASS Mixins
+section#main-content{
+	
+	background:$mccolor;
+	border-bottom:$hrcolor;
+	text-align:center;
+	font-size:$hlfont;
+	color:#323232;
+	font-weight:bold;
+	line-height:1.5em;
+	min-height:150px;
+	padding-top: 40px;
+	
+	p{
+		width:auto;
+	}
+	
+}
+
+
+section#sub-content{
+	background:$sccolor;
+	min-height:300px;
+	border-bottom:$hrcolor;
+		h1{
+			text-align:center;
+			font-size:18px;
+			text-transform:uppercase;
+			margin-top:20px;
+		}
+	
+		.block-wrapper{
+		
+			margin-top:40px;
+			
+			ul{
+				background:$mccolor;
+				width:350px;
+				float:left;
+				padding:$padding;
+				margin-left:40px;
+				border:$hrcolor;
+				line-height:1.5em;
+				
+			}
+		
+		}
+}
+
+
+footer{
+	background:$fccolor;
+	min-height:200px;
+	text-align:center;
+	padding-top:60px;
+}
+
+//add to _base.scss
+
+4: SASS Mixins
 ---------------
 @mixin commonTraits {
     border-radius: 10px;
@@ -67,33 +178,30 @@ header {
     @include commonTraits;
 }
 
-footer {
-    color: #3264AF;
-    @include commonTraits;
-}
 
-
-Chapter 4: Operations
+4: Operations
 ---------------
 
 $myColor: #f00;
 $basepadding: 10px;
 $basethickness: 4px;
 
-#mypara {
+.para {
     color: $myColor;
     border: $basethickness solid $myColor;
     padding: $basepadding;
 }
 
-$gender: boy;
-$myColor: if($gender=="boy", #00f, #f00);
+# Changing color val based on condition
+
+$color: green;
+$myColor: if($gender=="green", #00f, #f00);
 
 =====================================================
-** CHAPTER 5: Advanced SASS 
+** 5: Advanced SASS 
 =====================================================
 
-Chapter 5: Mixins with Arguments
+5: Mixins with Arguments
 ---------------
 // using regular arguments
 @mixin customBorder ($width, $color, $style) {
@@ -113,25 +221,27 @@ Chapter 5: Mixins with Arguments
     }
 }
 
-#mypara {
+@mixin border-radius($radius: 5px) {
+    -mox-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+
+aside.sidebar-right{
+	@include border-radious();
+}
+
+
+.para {
     @include customBorder(3px, blue, dotted);
 }
 
-Chapter 5: Output Formatting
+5: Output Formatting
 ---------------
 
-body {
-    font-family: Helvetica, Arial, sans-serif;
-    
-    p {
-        font-family:Times;
-    }
-    p#mypara {
-        font-family: "Courier New";
-    }
-}
-
-#mypara {
+.para {
     color: #404040;
     border: 1px solid #404040;
     padding: 10px;
@@ -141,15 +251,11 @@ body {
     }
 }
 
-Chapter 5: Functions
----------------
 
-@mixin border-radius($radius: 5px) {
-    -mox-border-radius: $radius;
-    -webkit-border-radius: $radius;
-    -ms-border-radius: $radius;
-    border-radius: $radius;
-}
+
+
+5: Functions
+---------------
 
 // Color functions
 $color: navy;
@@ -167,7 +273,7 @@ h4 {
     color: lighten($color, 40%);
 }
 
-#mypara {
+.para {
     @include border-radius;
     border-color: hsl(hue($color), 45%, 60%);
     border-width: 2px;
@@ -177,9 +283,9 @@ h4 {
 
 
 
-Chapter 5: Importing External Files
+5: Importing External Files
 ---------------
 
 // import the SASS definitions used in this style sheet
-@import "import_me.scss";
+@import "_base.scss";
 

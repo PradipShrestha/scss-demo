@@ -1,0 +1,30 @@
+//Import all the common ...
+@import "compass/reset";
+@import "zen";              // Add the Zen Grids responsive layout mixins.
+
+
+$mHeaderColor:#2D2D2D;                         // hex color value
+$padding: 15px 15px 15px 15px;           // multi-value variable
+$basefont:12px;
+$hlfont:16px;
+$fontcolor:#fff; 						 // hex color value
+$hgroup-color:#ACE2FF; 						 // hex color value
+$font-family:Gill, Helvetica, sans-serif ;
+$mccolor:#F9FAF5;
+$sccolor:#FFFFFF;
+$fccolor:#F9FAF5;
+$hrcolor:1px solid #ccc;
+
+
+
+// Zen Girld vars 
+$zen-column-count: 16;    // Set the total number of columns in the grid.
+$zen-gutter-width: 10px;
+$zen-grid-color: #ffdede !default;
+
+
+@mixin commonTraits {
+    border-radius: 10px;
+    border: 1px solid $hrcolor;
+    padding: 10px;
+}

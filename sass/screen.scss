@@ -3,4 +3,128 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "compass/reset";
+@import "base";
+
+
+body{
+font-family:$font-family;
+font-weight:normal;
+}
+
+.container {
+ @include zen-grid-container; // Apply this mixin to the container.
+}
+
+
+header {
+	background:$mHeaderColor;
+	padding:$padding;
+	color:$fontcolor;
+	min-height:300px;
+	font-weight:bold;
+	padding-top:80px;
+	
+}
+
+header{
+	hgroup{
+		h1{
+			font-size:12px;
+			display:none;	
+		
+		}
+		h2{
+			font-size:64px;	
+			text-align:center;
+		}
+		
+		h3{
+			 font-size: 29px;
+			 font-weight: normal;
+			 margin-right: 202px;
+			 text-align: right;
+			 margin-top: 15px;
+		}
+	}
+
+}
+
+
+section{
+
+}
+
+nav{
+display:none;
+}
+
+section#main-content,
+	section#sub-content{
+		padding:$padding;
+			hgroup{
+			
+				h1{
+					 font-size: 29px;
+					 font-weight:bold;
+				}
+			
+			}
+
+}
+
+section#main-content{
+	
+	background:$mccolor;
+	border-bottom:$hrcolor;
+	text-align:center;
+	font-size:$hlfont;
+	color:#323232;
+	font-weight:bold;
+	line-height:1.5em;
+	min-height:150px;
+	padding-top: 40px;
+	
+	p{
+		width:1200px;
+	}
+	
+}
+
+section#sub-content{
+	background:$sccolor;
+	min-height:300px;
+	border-bottom:$hrcolor;
+		h1{
+			text-align:center;
+			font-size:18px;
+			text-transform:uppercase;
+			margin-top:20px;
+		}
+	
+		.block-wrapper{
+		
+			margin-top:40px;
+			
+			ul{
+				background:$mccolor;
+				width:350px;
+				float:left;
+				padding:$padding;
+				margin-left:40px;
+				border:$hrcolor;
+				line-height:1.5em;
+				@include commonTraits;
+				
+			}
+		
+		}
+}
+
+
+footer{
+	background:$fccolor;
+	min-height:200px;
+	text-align:center;
+	padding-top:60px;
+}
+
